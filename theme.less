@@ -1,0 +1,230 @@
+//日常样式通用文件
+// // 1\. 按iPhone 6的视觉稿，基准字号为16px，因此可以设置一个LESS变量。
+// @px: 16rem;// 2\. 通过LESS内置的除法自动运算。比如用到16px的字号时，写成16/@px即可，
+// 最后会计算成1rem。.example {    font-size: 16/@px;    margin: 20/@px 0;    padding: 20/@px 10/@px;}
+
+
+@blue: #0c4384;
+@primary: #1890ff;
+@success: #52c41a;
+@warn: #faad14;
+@danger: #f5222d;
+@white: #fefefe;
+@border-base:#ccc;
+@font-title: rgba(0,0,0,0.85);
+@font-regular: rgba(0,0,0,0.65);
+@font-primary: rgba(0,0,0,0.65);
+@font-secondary: rgba(0,0,0,0.45);
+@font-disable: rgba(0,0,0,0.25);
+@border-base: rgba(0,0,0,0.15);
+@font-dividers: rgba(0,0,0,0.09);
+@font-background: rgba(0,0,0,0.04);
+@font-tableheader: rgba(0,0,0,0.02);
+
+// 样式实现图片正方形
+.square_box {
+  width: 100%;
+  position: relative;
+  .square {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  &:after {
+    content: '';
+    display: block;
+    padding-top: 100%;
+  }
+}
+
+
+.boxShadow() {
+  box-shadow: 8px 8px 20px -3px rgba(0,0,0,0.5);
+}
+
+.be-full() {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.box-shadow() {
+  box-shadow: 0px 0px 12px 0px rgba(11, 109, 255, 0.2);
+}
+
+.box-shadow-top() {
+  box-shadow: 0px 0px 10px 0px rgba(11, 109, 255, 0.08);
+}
+
+.types-bg {
+  background: rgb(28, 171, 233);
+  background: -moz-linear-gradient(0deg, rgb(28, 171, 233) 0%, rgb(57, 90, 237) 100%);
+  background: -webkit-linear-gradient(0deg, rgb(28, 171, 233) 0%, rgb(57, 90, 237) 100%);
+  background: -o-linear-gradient(0deg, rgb(28, 171, 233) 0%, rgb(57, 90, 237) 100%);
+  background: -ms-linear-gradient(0deg, rgb(28, 171, 233) 0%, rgb(57, 90, 237) 100%);
+  background: linear-gradient(90deg, rgb(28, 171, 233) 0%, rgb(57, 90, 237) 100%);
+}
+
+// 一像素下边框
+.bottom-border-1px(@color) {
+  position: relative;
+  border: none;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: @color;
+  }
+}
+
+// 一像素上边框
+.top-border-1px(@color) {
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    z-index: 200;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1px;
+    background-color: @color;
+  }
+}
+
+
+//根据像素比缩放1px像素边框
+@media only screen and (-webkit-device-pixel-ratio: 2) {
+
+  .top-border-1px,
+  .bottom-border-1px {
+    &:before {
+      transform: scaleY(.5);
+    }
+  }
+}
+
+@media only screen and (-webkit-device-pixel-ratio: 3) {
+
+  .top-border-1px,
+  .bottom-border-1px {
+    &:before {
+      transform: scaleY(.333333);
+    }
+  }
+}
+
+//清除浮动
+.clearFix() {
+  *zoom: 1;
+
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+/* 垂直居中 */
+
+.mix-flex-y-center () {
+  display: flex;
+  align-items: center;
+}
+
+/* 水平居中 */
+
+.mix-flex-x-center () {
+  display: flex;
+  justify-content: center;
+}
+
+/* 水平垂直居中 */
+
+.mix-flex-center () {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 超出部分出省略号 */
+
+.mix-text-overflow () {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* 多行文本超出部分省略号 */
+
+.ellipsis-line(@line: 2) {
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: @line;
+  box-orient: vertical;
+}
+
+
+// 自定义table样式
+.table(){
+  border: 1px solid #aaa;
+  width: 100%;
+  height: 100%;
+  margin:0;
+  padding:0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  .mix-flex-center();
+  flex-direction: column;
+  thead, tbody{
+    width: 100%;
+    .mix-flex-center();
+    flex-direction: column;
+  }
+  tbody{
+    flex: 1;
+  }
+  tr{
+    border: 1px solid #aaa;
+    padding: 5px;
+    flex: 1;
+    width: 100%;
+    .mix-flex-center();
+  }
+  th, td{
+    padding: 5px 10px;
+    text-align: center;
+    flex: 1;
+  }
+  th{
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    padding: 10px;
+  }
+}
+
+.jiantou-right{
+  &:after{
+    display:block;
+    content:'';
+    border-width:2rem;
+    border-style:solid;
+    border-color:transparent transparent transparent @white;
+    position:absolute;
+    right: -4rem;
+    top: calc(~"50% - 2rem");
+  }
+}
+
+
+
