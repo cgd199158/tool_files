@@ -337,6 +337,19 @@ export const removeItemByIndex = function(array, index){
   return array;
 }
 
+// 覆盖console, debug环境不使用
+export const debug = function(bool){
+    if(!bool){
+        consoleHolder = console;
+        console = {};
+        Object.keys(consoleHolder).forEach(function(key){
+            console[key] = function(){};
+        })
+    }else{
+        console = consoleHolder;
+    }
+}
+
 // module.exports = {
 //   changeOrientation,
 //   delItemByKey,
